@@ -23,7 +23,7 @@ public class NewAccount_Steps extends AbstractClass {
 
     @Then("I accessed the main page successfully")
     public void IAccessedTheMainPageSuccessfully() {
-        driver.get("https://www.obilet.com/");
+        checkCurrentUrl("https://www.obilet.com/");
 
     }
 
@@ -100,4 +100,5 @@ public class NewAccount_Steps extends AbstractClass {
     public void errorMessageDisplayed() {
         newAccount.setErrorMessage();
     }
+
 }

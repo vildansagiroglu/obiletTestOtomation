@@ -68,7 +68,7 @@ public class newAccount extends AbstractClass {
     }
 
     public void IRegisteredSuccessfully() {
-        driver.get("https://www.obilet.com/?kayit");
+        checkCurrentUrl("https://www.obilet.com/?kayit");
     }
 
     public void leaveEmailInputEmpty() {

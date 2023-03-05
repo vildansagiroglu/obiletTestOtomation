@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Driver;
 
+import java.util.Objects;
+
 public abstract class AbstractClass {
     public WebDriver driver = Driver.getDriver();
     WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -60,6 +62,16 @@ public abstract class AbstractClass {
             throw new RuntimeException(ex);
         }
         return result;
+    }
+
+    public Boolean checkCurrentUrl(String url) {
+        if (Objects.equals(driver.getCurrentUrl(), url)) {
+            return true;
+        } else {
+            Assert.fail("Target url is wrong");
+        }
+
+        return null;
     }
 
 //    public void Assertion(WebElement actual, String expected) {
