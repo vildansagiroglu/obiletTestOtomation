@@ -2,10 +2,10 @@ package PageObjectModel;
 
 
 import junit.framework.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Driver;
 
@@ -32,10 +32,20 @@ public abstract class AbstractClass {
         sendKeysElement.sendKeys(value);
     }
 
-    public void selectElementFromDropDown(WebElement dropdown, String element) {
-        Select slc = new Select(dropdown);
-        slc.selectByVisibleText(element);
+
+    public void obSelectDropDown(WebElement dropdown, String value) {
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown));
+        clickFunction(dropdown);
+        sendKeysFunction(dropdown, value);
+
+
     }
+
+    public void selectFirstFlight(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.findElements(By.tagName("li")).get(0).click();
+    }
+
 
     public Boolean isChecked(WebElement checkbox) {
         boolean result = false;
@@ -64,21 +74,11 @@ public abstract class AbstractClass {
         return result;
     }
 
-    public Boolean checkCurrentUrl(String url) {
-        if (Objects.equals(driver.getCurrentUrl(), url)) {
-            return true;
-        } else {
+    public void checkCurrentUrl(String url) {
+        if (!Objects.equals(driver.getCurrentUrl(), url)) {
             Assert.fail("Target url is wrong");
         }
 
-        return null;
     }
-
-//    public void Assertion(WebElement actual, String expected) {
-//        wait.until(ExpectedConditions.visibilityOf(actual));
-//        Assert.assertEquals(actual.getText(), expected);
-//        System.out.println("The message is " + actual.getText());
-//    }
-
 
 }
