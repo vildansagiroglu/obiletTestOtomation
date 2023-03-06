@@ -2,6 +2,7 @@ Feature: Create New Account
 
 
   Scenario: Opening main page
+    Given I have obiletcom main page
     Then I accessed the main page successfully
 
   Scenario Outline: Register
@@ -15,8 +16,8 @@ Feature: Create New Account
     Then I registered successfully
     Examples:
     |email|password|
-    |abed1@gmail.com|  abed1234|
-    |vildan343@hotmail.com|vildan1212|
+    |mutlubiyemek@gmail.com| vildan12345|
+
 
   Scenario: Unsuccessful Register 1
     Given I have obiletcom main page
@@ -40,6 +41,6 @@ Feature: Create New Account
     Examples:
       |email|password|
       |vildan343@hotmail.com|  abed1234|
-      |vildan343@hotmail.com|vildan1212|
+
 
 

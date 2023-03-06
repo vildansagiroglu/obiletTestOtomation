@@ -4,26 +4,32 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
+import junit.framework.Assert;
 import utilities.Driver;
+
 
 public class NewAccount_Steps extends AbstractClass {
 
     newAccount newAccount = new newAccount();
-    private WebDriver driver;
+
 
     @io.cucumber.java.en.Given("^I have obiletcom main page$")
     public void IHaveObiletComMainPage() {
         driver = Driver.getDriver();
         driver.manage().window().maximize();
         getUrl("https://www.obilet.com/");
-        //driver.navigate();
     }
 
 
     @Then("I accessed the main page successfully")
     public void IAccessedTheMainPageSuccessfully() {
-        checkCurrentUrl("https://www.obilet.com/");
+        {
+            String pageTitle = driver.getTitle();
+            if (!pageTitle.equals("Ucuz Otobüs Bileti Fiyatları, Otobüs Bileti Al - obilet.com")) {
+                Assert.fail("Ana sayfaya yonlendirilemedi");
+            }
+
+        }
 
     }
 
@@ -67,12 +73,17 @@ public class NewAccount_Steps extends AbstractClass {
     }
 
     @After
-    public void quitDriver() throws InterruptedException {
-        Thread.sleep(5000);
-
-        //Driver.closeDriver();
+    public void quitDriver()  {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (driver != null)  {
+            driver.quit();
+            driver=null;
+        }
     }
-
 
     @And("Leave email input empty")
     public void leaveEmailInputEmpty() {
@@ -93,7 +104,7 @@ public class NewAccount_Steps extends AbstractClass {
     @Then("Password error message displayed")
     public void passwordErrorMessageDisplayed() {
         newAccount.setPasswordErrorMessage();
-        Driver.closeDriver();
+       // Driver.closeDriver();
     }
 
     @Then("Error message displayed")

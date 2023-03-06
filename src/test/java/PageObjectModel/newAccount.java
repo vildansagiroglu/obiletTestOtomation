@@ -50,7 +50,6 @@ public class newAccount extends AbstractClass {
         sendKeysFunction(emailAddressInput, email);
 
     }
-
     public void typePassword(String password) {
         sendKeysFunction(passwordInput, password);
     }
@@ -62,13 +61,13 @@ public class newAccount extends AbstractClass {
         }
 
     }
-
     public void clickSubmitButton() {
         clickFunction(submitButton);
     }
 
     public void IRegisteredSuccessfully() {
         checkCurrentUrl("https://www.obilet.com/?kayit");
+
     }
 
     public void leaveEmailInputEmpty() {
